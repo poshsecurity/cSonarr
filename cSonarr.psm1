@@ -5,13 +5,13 @@ enum Ensure
 }
 
 [DscResource()]
-class cSonarr 
+class cSonarrInstall 
 {
     [DscProperty(Key)]
     [string] $Ensure
         
     # Gets the resource's current state.
-    [cSonarr] Get() 
+    [cSonarrInstall] Get() 
     {
         $Package = Get-Package -Name 'Sonarr' -ErrorAction SilentlyContinue
         if ($null -ne $Package) 
