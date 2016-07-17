@@ -15,8 +15,8 @@ class cSonarrInstall
     {
         $Package = Get-Package -Name 'Sonarr' -ErrorAction SilentlyContinue
         if ($null -ne $Package) 
-        { 
-            $this.Ensure = [Ensure]::Present 
+        {
+            $this.Ensure = [Ensure]::Present
         }
         else 
         {
@@ -33,7 +33,7 @@ class cSonarrInstall
             # Download
             $DownloadURI = 'https://download.sonarr.tv/v2/master/latest/NzbDrone.master.exe'
             $DownloadDestination = Join-Path -Path $ENV:temp -ChildPath 'NzbDrone.master.exe'
-            Invoke-WebRequest -Uri $DownloadURI -OutFile $DownloadDestination
+            Invoke-WebRequest -Uri $DownloadURI -OutFile $DownloadDestination -UseBasicParsing
             
             # Start install
             Start-Process -FilePath $DownloadDestination -ArgumentList '/verysilent /norestart /noicons' -Wait
@@ -57,9 +57,8 @@ class cSonarrInstall
         }
         else 
         {
-           # If it should be absent, check if null and return result
-           return ($null -eq $Package) 
+            # If it should be absent, check if null and return result
+            return ($null -eq $Package) 
         }
     }
 }
-
