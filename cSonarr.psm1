@@ -34,13 +34,19 @@ class cSonarrInstall
             $DownloadURI = 'https://download.sonarr.tv/v2/master/latest/NzbDrone.master.exe'
             $DownloadDestination = Join-Path -Path $ENV:temp -ChildPath 'NzbDrone.master.exe'
             Invoke-WebRequest -Uri $DownloadURI -OutFile $DownloadDestination -UseBasicParsing
-            
+
+            $InstallPath = Join-Path -Path ${env:ProgramFiles} -ChildPath 'Sonarr'
+            $ArgumentList = '/verysilent /norestart /DIR="{0}"' -f $InstallPath
+
             # Start install
-            Start-Process -FilePath $DownloadDestination -ArgumentList '/verysilent /norestart /noicons' -Wait
+            Start-Process -FilePath $DownloadDestination -ArgumentList $ArgumentList -Wait
+
+            # Start service
+            Start-Service 'NzbDrone'
         }
         else 
         {
-            $SonarrInstall = Join-Path -Path ${env:ProgramData} -ChildPath 'NzbDrone\bin'
+            $SonarrInstall = Join-Path -Path ${env:ProgramFiles} -ChildPath 'Sonarr\bin'
             $SonarrUninstaller = Join-Path -Path $SonarrInstall -ChildPath 'unins000.exe'
             Start-Process -FilePath $SonarrUninstaller -ArgumentList '/verysilent /norestart' -Wait
         }

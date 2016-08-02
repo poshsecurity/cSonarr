@@ -14,14 +14,21 @@ Controls the installation (absent or present) of Sonarr, also ensure that the so
 
 ## Versions
 
-### Unreleased
-
-* 1.4 has not been released to PS Gallery
-
-### 1.4
+### 1.2
 
 * Work to ensure that the DSC module meets community guidelines and DSC guidelines
-* Developing test cases
+* Added PS5 requirements to PSD
+* Released to PowerShell Gallery
+
+### 1.1
+
+* Fixed incorrect resource name
+* Released to PowerShell Gallery
+
+### 1.0
+
+* Inital version
+* Released to PowerShell Gallery
 
 ## Examples
 ### Ensure Sonarr Installed
